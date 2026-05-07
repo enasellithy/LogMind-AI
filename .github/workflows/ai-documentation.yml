@@ -26,8 +26,8 @@ jobs:
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
-          ls -R scripts/
-          npx ts-node ./scripts/generate-docs.ts
+          ls -R .github/scripts/
+          npx ts-node .github/scripts/generate-docs.ts
 
       - name: Create Pull Request for Wiki
         uses: peter-evans/create-pull-request@v5
