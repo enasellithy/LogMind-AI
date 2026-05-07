@@ -2,36 +2,19 @@
 
 # App Service Wiki
 ## Overview
-The `app.service.ts` file is a fundamental component of a NestJS application, serving as the primary business logic layer. Its purpose is to encapsulate the core functionality of the application, providing a clear separation of concerns between the API layer (controllers) and the business logic.
+The `app.service.ts` file contains the implementation of the `AppService` class, which serves as a basic example of a service in a NestJS application. The primary purpose of this file is to provide a simple service that can be used to demonstrate the functionality of a NestJS application.
 
 ## Architecture Role
-The `AppService` class is a Service, which falls under the Business Layer in the NestJS architecture. It is designed to handle complex business logic, interact with databases or external services, and provide data to the API layer (controllers) for further processing and response.
+The `AppService` class is a part of the **Business Layer** (Service Layer) in the NestJS architecture. It is responsible for encapsulating the business logic of the application and providing a layer of abstraction between the API layer (Controllers) and the data storage or other external systems.
 
 ## Key Methods
 The `AppService` class contains a single method:
-* **getHello()**: This method returns a simple greeting message, "Hello World!".
+* **`getHello()`**: This method returns a string with the value `'Hello World!'`. It takes no parameters and returns a `string` value.
 	+ Parameters: None
 	+ Return Type: `string`
 
 ## Dependencies
-The `AppService` class does not inject any other services or modules, making it a self-contained unit. However, in a real-world scenario, it would likely depend on other services, repositories, or modules to perform its tasks.
+The `AppService` class does not have any dependencies injected into it. It is a self-contained service that does not rely on any other services or modules.
 
 ## Kafka/Events
-There are no event emitters or listeners (Kafka) in the provided `AppService` class. In a typical NestJS application, event-driven architecture would involve using the `@nestjs/microservices` package to emit and listen to events, but this is not present in this example.
-
-Example Use Case:
-To utilize the `AppService` in a controller, you would inject it into the controller's constructor and call its methods as needed:
-```typescript
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
-
-@Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
-
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
-}
-```
+The `AppService` class does not contain any event emitters or listeners, including Kafka. It is a simple service that only provides a basic method for demonstration purposes. There are no events or messages being published or consumed in this service.
