@@ -45,7 +45,7 @@ async function generateDocumentation() {
             content: `File: ${fileName}\n\nCode Content:\n\`\`\`typescript\n${code}\n\`\`\``
           }
         ],
-        model: "llama3-70b-8192",
+        model: "llama-3.3-70b-versatile",
         temperature: 0.2,
       });
 
