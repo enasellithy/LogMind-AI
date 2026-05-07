@@ -1,0 +1,37 @@
+name: AI Documentation Autopilot
+
+on:
+  push:
+    branches: [ "main" ] 
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  auto-generate-wiki:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install groq-sdk glob ts-node typescript @types/node
+
+      - name: Run AI Documentation Script
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: npx ts-node scripts/generate-docs.ts
+
+      - name: Create Pull Request for Wiki
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "docs: 🤖 Automated Wiki update via Argus AI"
+          title: "AI-Generated Wiki Update"
+          body: "This PR contains technical documentation generated automatically by Groq AI (Llama 3)."
+          branch: "ai-docs-update"
